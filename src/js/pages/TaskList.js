@@ -2,6 +2,7 @@ import React from "react";
 
 import Task from "../components/Task";
 import TaskStore from "../store/TaskStore";
+import * as TaskActions from "../actions/TaskActions";
 
 
 export default class Tasks extends React.Component {
@@ -12,10 +13,36 @@ export default class Tasks extends React.Component {
     };
   }
 
+  componentWillMount() {
+    TaskStore.on("change", () => {
+      this.setState({
+        tasks: TaskStore.getAll()
+      })
+    });
+  }
+
+  componentWillUnmount() {
+    TaskStore.removeListener("change", () => {
+      this.setState({
+        tasks: TaskStore.getAll()
+      })
+    });
+  }
+
+
+
+  createTask() {
+    TaskActions.createTask(Date.now());
+  }
+
+  reloadTask() {
+    TaskActions.reloadTasks();
+  }
+
 
   render() {
     const { tasks } = this.state;
-
+    console.log(tasks);
     const TaskComponents = tasks.filter(m => {
       return m.status == "awaiting approval";
     }).map((task) => {
@@ -33,14 +60,8 @@ export default class Tasks extends React.Component {
     console.log("featured");
     return (
       <div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="well text-center">
-              {welcomeUser}
-            </div>
-          </div>
-        </div>
-
+        <button onClick={this.createTask.bind(this)}>Create</button>
+        <button onClick={this.reloadTask.bind(this)}>Reload</button>
         <div class="row">{TaskComponents}</div>
       </div>
     );
