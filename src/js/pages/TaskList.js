@@ -1,14 +1,26 @@
 import React from "react";
 
 import Task from "../components/Task";
+import TaskStore from "../store/TaskStore";
+
 
 export default class Tasks extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      tasks: TaskStore.getAll()
+    };
+  }
+
+
   render() {
-    const Tasks = [
-      "Some Task",
-      "Rejected Task",
-      "Another Task",
-    ].map((title, i) => <Task key={i} title={title} status="awaiting approval"/> );
+    const { tasks } = this.state;
+
+    const TaskComponents = tasks.map((task) => {
+      return <Task key={task.id} title={task.title} status={task.status}/>;
+    });
+
+    console.log("task components" + TaskComponents.length)
 
     const welcomeText = [
       "Welcome, Jack",
@@ -27,7 +39,7 @@ export default class Tasks extends React.Component {
           </div>
         </div>
 
-        <div class="row">{Tasks}</div>
+        <div class="row">{TaskComponents}</div>
       </div>
     );
   }

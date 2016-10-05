@@ -33,6 +33,7 @@ export default class Task extends React.Component {
 
   render() {
     const { title } = this.props;
+    console.log("Task Render " + title);
     const { status } = this.state;
     const awaitingApproval = (status == "awaiting approval");
     var buttons = null;
