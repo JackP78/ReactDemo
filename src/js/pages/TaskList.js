@@ -8,7 +8,7 @@ export default class Tasks extends React.Component {
       "Some Task",
       "Rejected Task",
       "Another Task",
-    ].map((title, i) => <Task key={i} title={title}/> );
+    ].map((title, i) => <Task key={i} title={title} status="awaiting approval"/> );
 
     const welcomeText = [
       "Welcome, Jack",
