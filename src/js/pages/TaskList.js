@@ -16,7 +16,9 @@ export default class Tasks extends React.Component {
   render() {
     const { tasks } = this.state;
 
-    const TaskComponents = tasks.map((task) => {
+    const TaskComponents = tasks.filter(m => {
+      return m.status == "awaiting approval";
+    }).map((task) => {
       return <Task key={task.id} title={task.title} status={task.status}/>;
     });
 
