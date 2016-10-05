@@ -7,7 +7,7 @@ export default class Archive extends React.Component {
     const { query } = this.props.location;
     const { params } = this.props;
     const { task } = params;
-    const { date, filter } = query;
+    const { date, status } = query;
 
     const Tasks = [
       "Old Task 1",
@@ -17,7 +17,7 @@ export default class Archive extends React.Component {
     return (
       <div>
         <h1>Archives</h1>
-        task: {task}, date: {date}, filter: {filter}
+        task: {task}, date: {date}, status: {status}
         <div class="row">{Tasks}</div>
       </div>
     );
