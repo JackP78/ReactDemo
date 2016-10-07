@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 import Footer from "../components/layout/Footer";
 import Nav from "../components/layout/Nav";
-import LoginBanner from "../components/Layout/LoginBanner";
+import LoginStatus from "../components/LoginStatus";
 
 export default class Layout extends React.Component {
 
@@ -21,7 +21,7 @@ export default class Layout extends React.Component {
         <div class="container" style={containerStyle}>
           <div class="row">
             <div class="col-lg-12">
-              <LoginBanner username="Dave"/>
+              <LoginStatus/>
               <h1>Idea Tasks</h1>
 
               {this.props.children}

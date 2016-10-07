@@ -1,9 +1,11 @@
+/* @flow */
 import dispatcher from "../dispatcher";
 
-export function login() {
+export function login(userName : string) {
+  console.log("username passed " + userName);
   dispatcher.dispatch({
     type: "LOGIN",
-    payload: "Dave"
+    payload: userName
   });
 }
 
@@ -13,16 +15,16 @@ export function logout() {
   });
 }
 
-export function updateUser(username) {
+export function updateUser(username : string) {
   dispatcher.dispatch({
-    type: "PROFILE_UPDATE"
+    type: "PROFILE_UPDATE",
     payload: username
   });
 }
 
-export function updateRole(role) {
+export function updateRole(role : string) {
   dispatcher.dispatch({
-    type: "PROFILE_UPDATE"
+    type: "PROFILE_UPDATE",
     payload: role
   });
 }
